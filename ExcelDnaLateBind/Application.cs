@@ -10,9 +10,19 @@ namespace CobaltQuantware.ExcelDnaLateBind
     {
         public Application() : base(ExcelDnaUtil.Application) { }
 
-        public Worksheet ActiveWorksheet()
+        public Workbook ActiveWorkbook
         {
-            return new Worksheet(GetProperty("ActiveSheet"));
+            get
+            {
+                return new Workbook(GetProperty("ActiveWorkbook"));
+            }
+        }
+
+        public Worksheet ActiveWorksheet {
+            get
+            {
+                return new Worksheet(GetProperty("ActiveSheet"));
+            }
         }
     }
 }

@@ -33,6 +33,22 @@ namespace CobaltQuantware.ExcelDnaLateBind
                 );
         }
 
+        public void SetProperty(string name, object value)
+        {
+            SetProperty(name, new object[] { value });
+        }
+
+        public void SetProperty(string name, object[] args)
+        {
+            ObjType.InvokeMember(
+                name,
+                BindingFlags.SetProperty | BindingFlags.Public,
+                null,
+                Obj,
+                args
+                );
+        }
+
         public object InvokeMethod(string name)
         {
             return InvokeMethod(name, null);
