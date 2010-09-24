@@ -9,11 +9,8 @@ namespace CobaltQuantware.ExcelDnaLateBind
     {
         public Range(object Range) : base(Range) { }
 
-        public object Value
-        {
-            get { return GetProperty("Value"); }
-            set { SetProperty("Value", value); }
-        }
+        public object Value { get { return GetProperty("Value"); } set { SetProperty("Value", value); } }
+        public object Text { get { return GetProperty("Text"); } }
 
         public Interior Interior { get { return new Interior(GetProperty("Interior")); } }
 
