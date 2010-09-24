@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace CobaltQuantware.ExcelDnaLateBind
 {
-    internal class LateBoundObject
+    public class LateBoundObject
     {
         protected Type ObjType { get; private set; }
         protected object Obj { get; private set; }
