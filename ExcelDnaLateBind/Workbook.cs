@@ -9,12 +9,6 @@ namespace CobaltQuantware.ExcelDnaLateBind
     {
         public Workbook(object Workbook) : base(Workbook) { }
 
-        public Worksheets Sheets
-        {
-            get
-            {
-                return new Worksheets(GetProperty("Sheets"));
-            }
-        }
+        public Worksheets Sheets { get { return new Worksheets(GetProperty("Sheets")); } }
     }
 }

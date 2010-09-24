@@ -21,5 +21,7 @@ namespace CobaltQuantware.ExcelDnaLateBind
         public Range Columns { get { return new Range(GetProperty("Columns")); } }
 
         public int Count { get { return (int)GetProperty("Count"); } }
+
+        public Range Cells(int Row, int Column) { return new Range(GetProperty("Cells", new object[] { Row, Column })); }
     }
 }
