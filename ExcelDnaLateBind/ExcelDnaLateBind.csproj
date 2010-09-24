@@ -61,6 +61,7 @@
     <Compile Include="LateBoundObjectFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Range.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="Workbook.cs" />
     <Compile Include="Workbooks.cs" />
     <Compile Include="Worksheet.cs" />
