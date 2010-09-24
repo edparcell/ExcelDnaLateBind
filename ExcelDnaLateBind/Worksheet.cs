@@ -18,5 +18,10 @@ namespace CobaltQuantware.ExcelDnaLateBind
         {
             return new Range(GetProperty("Range", new object[] { cell }));
         }
+
+        public Range Cells(int Row, int Column)
+        {
+            return new Range(GetProperty("Cells", new object[] { Row, Column }));
+        }
     }
 }

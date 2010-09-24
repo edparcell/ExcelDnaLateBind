@@ -8,8 +8,8 @@ namespace CobaltQuantware.ExcelDnaLateBind
 {
     public class LateBoundObject
     {
-        protected Type ObjType { get; private set; }
-        protected object Obj { get; private set; }
+        public Type ObjType { get; private set; }
+        public object Obj { get; private set; }
 
         public LateBoundObject(object Obj)
         {
