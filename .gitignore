@@ -1,0 +1,13 @@
+bin
+obj
+Debug
+Release
+*.suo
+*.user
+*.ncb
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.lib
+*.exe
