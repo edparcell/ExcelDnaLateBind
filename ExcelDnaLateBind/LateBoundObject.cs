@@ -8,6 +8,10 @@ namespace CobaltQuantware.ExcelDnaLateBind
 {
     public class LateBoundObject
     {
+        private const int RETRY_COUNT = 10;
+        private const int RETRY_DELAY = 25;
+        private const string VBA_E_IGNORE = "0x800AC472";
+
         public Type ObjType { get; private set; }
         public object Obj { get; private set; }
 
@@ -24,13 +28,30 @@ namespace CobaltQuantware.ExcelDnaLateBind
 
         public object GetProperty(string name, object[] args)
         {
-            return ObjType.InvokeMember(
-                name,
-                BindingFlags.GetProperty | BindingFlags.Public,
-                null,
-                Obj,
-                args
-                );
+            TargetInvocationException lastException = null;
+            for (int retry = 0; retry < RETRY_COUNT; ++retry)
+            {
+                try
+                {
+                    return ObjType.InvokeMember(
+                        name,
+                        BindingFlags.GetProperty | BindingFlags.Public,
+                        null,
+                        Obj,
+                        args
+                        );
+                }
+                catch (TargetInvocationException e)
+                {
+                    lastException = e;
+                    if (e.Message.Contains(VBA_E_IGNORE))
+                        System.Threading.Thread.Sleep(RETRY_DELAY);
+                    else
+                        throw;
+                }                
+            }
+            if (lastException != null) throw lastException;
+            return null;
         }
 
         public void SetProperty(string name, object value)
@@ -40,13 +61,30 @@ namespace CobaltQuantware.ExcelDnaLateBind
 
         public void SetProperty(string name, object[] args)
         {
-            ObjType.InvokeMember(
-                name,
-                BindingFlags.SetProperty | BindingFlags.Public,
-                null,
-                Obj,
-                args
-                );
+            TargetInvocationException lastException = null;
+            for (int retry = 0; retry < RETRY_COUNT; ++retry)
+            {
+                try
+                {
+                    ObjType.InvokeMember(
+                        name,
+                        BindingFlags.SetProperty | BindingFlags.Public,
+                        null,
+                        Obj,
+                        args
+                        );
+                }
+                catch (TargetInvocationException e)
+                {
+                    lastException = e;
+                    if (e.Message.Contains(VBA_E_IGNORE))
+                        System.Threading.Thread.Sleep(RETRY_DELAY);
+                    else
+                        throw;
+
+                }
+            }
+            if (lastException != null) throw lastException;
         }
 
         public object InvokeMethod(string name)
@@ -56,13 +94,31 @@ namespace CobaltQuantware.ExcelDnaLateBind
 
         public object InvokeMethod(string name, object[] args)
         {
-            return ObjType.InvokeMember(
-                name,
-                BindingFlags.InvokeMethod | BindingFlags.Public,
-                null,
-                Obj,
-                args
-                );
+            TargetInvocationException lastException = null;
+            for (int retry = 0; retry < RETRY_COUNT; ++retry)
+            {
+                try
+                {
+                    return ObjType.InvokeMember(
+                        name,
+                        BindingFlags.InvokeMethod | BindingFlags.Public,
+                        null,
+                        Obj,
+                        args
+                        );
+                }
+                catch (TargetInvocationException e)
+                {
+                    lastException = e;
+                    if (e.Message.Contains(VBA_E_IGNORE))
+                        System.Threading.Thread.Sleep(RETRY_DELAY);
+                    else
+                        throw;
+
+                }
+            }
+            if (lastException != null) throw lastException;
+            return null;
         }
     }
 
