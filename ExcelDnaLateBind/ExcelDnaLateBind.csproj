@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="ColorUtils.cs" />
+    <Compile Include="Font.cs" />
     <Compile Include="Interior.cs" />
     <Compile Include="LateBoundCollection.cs" />
     <Compile Include="LateBoundObject.cs" />

@@ -17,6 +17,8 @@ namespace CobaltQuantware.ExcelDnaLateBind
 
         public Interior Interior { get { return new Interior(GetProperty("Interior")); } }
 
+        public Font Font { get { return new Font(GetProperty("Font")); } }
+
         public Range Rows { get { return new Range(GetProperty("Rows")); } }
         public Range Columns { get { return new Range(GetProperty("Columns")); } }
 
